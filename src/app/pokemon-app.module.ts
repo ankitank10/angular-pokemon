@@ -15,6 +15,10 @@ import {PokemonListComponent,
         PokemonDetailResolver
 } from './pokemon/index'
 import {CreateProductComponent, ProductListComponent} from './product/index'
+import {RouteActivatorService} from '../app/common/services/activator-service';
+import {FirstUpperPipe} from '../app/common/utilities/FirstUpper-pipe'
+import {UserService} from '../app/common/services/user-service';
+import {Error404Component} from '../app/common/errors/404.component'
 
 
 @NgModule({
@@ -25,7 +29,9 @@ import {CreateProductComponent, ProductListComponent} from './product/index'
     PokemonDetailComponent,
     NavBarComponent,
     CreateProductComponent,
-    ProductListComponent
+    ProductListComponent,
+    Error404Component,
+    FirstUpperPipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,7 @@ import {CreateProductComponent, ProductListComponent} from './product/index'
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [PokemonService, PokemonListResolver, PokemonDetailResolver],
+  providers: [PokemonService, PokemonListResolver, PokemonDetailResolver, RouteActivatorService, UserService],
   bootstrap: [PokemonAppComponent]
 })
 export class PokemonAppModule { }

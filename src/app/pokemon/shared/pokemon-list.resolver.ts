@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Resolve } from '@angular/router'
 import { PokemonService } from './pokemon.service'
+import {POKEMON_LIST_CONST} from '../../constants/mappings'
 
 @Injectable()
 export class PokemonListResolver implements Resolve<any> {
@@ -9,6 +10,6 @@ export class PokemonListResolver implements Resolve<any> {
   }
 
   resolve() {
-    return this.pokServiceObj.getPokemonList()
+    return this.pokServiceObj.getPokemonList(0, POKEMON_LIST_CONST.noOfListItems)
   }
 }

@@ -61,11 +61,9 @@ export class PokemonDetailComponent implements OnInit {
             break;
         }
         });
-        const height =
-        Math.round((this.pokemon.height * 0.328084 + 0.00001) * 100) / 100;
+        const height =this.pokemon.height/10;
 
-        const weight =
-        Math.round((this.pokemon.weight * 0.220462 + 0.00001) * 100) / 100;
+        const weight = this.pokemon.weight * 0.1;
 
         const types = this.pokemon.types.map(type => type.type.name);
 

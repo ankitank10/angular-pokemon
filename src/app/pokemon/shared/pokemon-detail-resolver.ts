@@ -10,6 +10,6 @@ export class PokemonDetailResolver implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.pokServiceObj.getPokemonDetail(route.params['id'])
+    return this.pokServiceObj.getPokemonDetail(route.params['term'])
   }
 }

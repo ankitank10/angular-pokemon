@@ -5,3 +5,9 @@
     padding-left: 10px;
 
 }
+.main-bar {
+    height: 100px; 
+    background-color: green;
+    color: white;
+    padding-left: 10px;
+}

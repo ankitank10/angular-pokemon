@@ -27,12 +27,16 @@ export const TYPE_COLORS = {
     water: '#3295F6'
   };
 
-  export const productFormDefaultVal = {
+  export const PRODUCT_FORM_DEFAULT = {
     name: 'Pokemon Cloth',
     description: 'Pokemon cloth for pokemon',
     price: '10.00',
     category: 'Cloth',
-    image: 'https://pokeapi.co/api/v2/product.jpg',
+    image: 'https://cdn.shopify.com/s/files/1/1130/2850/products/2016-new-children-t-shirt-pokemon-go-shirt-kids-girls-tops-shirts-clothing-t-shirt-boy_1200x1200.jpg',
     phone: '8908908909',
     type: 'Mobile'
+}
+
+export const POKEMON_LIST_CONST = {
+  noOfListItems: 20
 }

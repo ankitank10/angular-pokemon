@@ -1,19 +1,22 @@
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg mb-4 navbar-dark bg-dark"> 
     <a class="navbar-brand" href="#">Pokemon</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/home']">Home</a>
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Detail</a>
+          <a class="nav-link" routerLinkActive="active">Detail</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/product/new']">Create Product</a>
+        <li class="nav-item" *ngIf="auth.checkIsAdmin()">
+          <a class="nav-link" [routerLink]="['/product/new']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Create Product</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/product/list']">Product List</a>
+        <li class="nav-item" class="nav-item" *ngIf="auth.checkIsAdmin()">
+          <a class="nav-link" [routerLink]="['/product/list']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Product List</a>
         </li>
       </ul>
+      <form class="form-inline" [formGroup]="navSearchGroup" (ngSubmit)="searchItems()">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search Pokemon" formControlName="search" [ngClass]="{'error-nav': (navSearchGroup.get('search').errors && (navSearchGroup.get('search').touched || navSearchGroup.get('search').dirty))}">
+      </form>
     </div>
   </nav>

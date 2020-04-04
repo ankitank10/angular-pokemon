@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms'
-import { productFormDefaultVal } from '../constants/mappings'
+import { PRODUCT_FORM_DEFAULT } from '../constants/mappings'
 
 @Component({
     templateUrl: './create-product.html',
@@ -51,13 +51,13 @@ export class CreateProductComponent implements OnInit {
     }
     createFormGroup(): FormGroup {
         return this.fb.group({
-            name: [productFormDefaultVal.name, [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$'), Validators.minLength(3)]],
-            description: [productFormDefaultVal.description, [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$'), Validators.minLength(3)]],
-            price: [productFormDefaultVal.price, [Validators.required, Validators.pattern('^[0-9]*\.[0-9]{2}$')]],
-            category: [productFormDefaultVal.category, Validators.required],
-            image: [productFormDefaultVal.image, [Validators.required, Validators.pattern('(^https?:\/\/.*\.(?:png|jpg|gif)$)')]],
-            phone: [productFormDefaultVal.phone, [Validators.required, Validators.pattern('^[0-9 ]*$'), Validators.maxLength(10)]],
-            type: [productFormDefaultVal.type]
+            name: [PRODUCT_FORM_DEFAULT.name, [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$'), Validators.minLength(3)]],
+            description: [PRODUCT_FORM_DEFAULT.description, [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$'), Validators.minLength(3)]],
+            price: [PRODUCT_FORM_DEFAULT.price, [Validators.required, Validators.pattern('^[0-9]*\.[0-9]{2}$')]],
+            category: [PRODUCT_FORM_DEFAULT.category, Validators.required],
+            image: [PRODUCT_FORM_DEFAULT.image, [Validators.required, Validators.pattern('(^https?:\/\/.*\.(?:png|jpg|gif)$)')]],
+            phone: [PRODUCT_FORM_DEFAULT.phone, [Validators.required, Validators.pattern('^[0-9 ]*$'), Validators.maxLength(10)]],
+            type: [PRODUCT_FORM_DEFAULT.type]
         })
     }
 
@@ -121,9 +121,9 @@ export class CreateProductComponent implements OnInit {
         localStorage.setItem('products', JSON.stringify(this.productForm.value.product));
     }
     resetForm(): void {
-        (<FormArray>this.productForm.get('product')).controls[this.productForm.get('product').length-1].setValue(productFormDefaultVal)
+        (<FormArray>this.productForm.get('product')).controls[(<FormArray>this.productForm.get('product')).length-1].setValue(PRODUCT_FORM_DEFAULT)
         // this.productForm.patchValue({
-        //     product: productFormDefaultVal
+        //     product: PRODUCT_FORM_DEFAULT
         // })
     }
     addNewProduct(): void {
