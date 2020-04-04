@@ -1,0 +1,147 @@
+<div class="container">
+    <div class="heading-bar col">
+        <span>{{pokemonDetail.name}}</span>
+    </div>
+    <div class="card-body">
+        <div class="row align-items-center">
+          <div class=" col-md-3 ">
+            <img
+              alt=''
+              [src]="pokemonDetail.imageUrl"
+              class="card-img-top rounded mx-auto mt-2"
+            />
+          </div>
+          <div class="col-md-9">
+            <div class="row">
+                  <div class="col-7">
+                      <span *ngFor="let type of pokemonDetail.types"
+                        key={type}
+                        class="badge badge-pill mr-1"
+                        [ngStyle]="{'backgroundColor': themeColors[type], color: 'white'}"
+                      >
+                        {{type.toLowerCase()}}
+                      </span>
+                  </div>
+                <div class="col-5 float-right">
+                    <h5>#{{pokemonDetail.pokemonIndex}}</h5>
+                </div>
+            </div>
+            <div class="row align-items-center" *ngFor="let statObj of pokemon.stats">
+              <div class="col-12 col-md-5">
+                {{statObj.stat.name}}
+              </div>
+              <div class="col-12 col-md-7">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    [style.background-color]="pokemonDetail.themeColor"
+                    [style.width.%]="statObj.base_stat"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <small>{{statObj.base_stat}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col">
+            <p class="">{{pokemonDetail.description}}</p>
+          </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="heading-bar col mb-4">
+            <span>Profile</span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-6">
+                    <h6 class="float-right">Height:</h6>
+                    </div>
+                    <div class="col-6">
+                    <h6 class="float-left">{{pokemonDetail.height}} ft.</h6>
+                    </div>
+                    <div class="col-6">
+                    <h6 class="float-right">Weight:</h6>
+                    </div>
+                    <div class="col-6">
+                    <h6 class="float-left">{{pokemonDetail.weight}} lbs</h6>
+                    </div>
+                    <div class="col-6">
+                    <h6 class="float-right">Catch Rate:</h6>
+                    </div>
+                    <div class="col-6">
+                    <h6 class="float-left">{{pokemonDetail.catchRate}}%</h6>
+                    </div>
+                    <div class="col-6">
+                    <h6 class="float-right">Gender Ratio:</h6>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="row">
+                <div class="col-6">
+                <h6 class="float-right">Egg Groups:</h6>
+                </div>
+                <div class="col-6">
+                <h6 class="float-left">{{pokemonDetail.eggGroups}} </h6>
+                </div>
+                <div class="col-6">
+                <h6 class="float-right">Hatch Steps:</h6>
+                </div>
+                <div class="col-6">
+                <h6 class="float-left">{{pokemonDetail.hatchSteps}}</h6>
+                </div>
+                <div class="col-6">
+                <h6 class="float-right">Abilities:</h6>
+                </div>
+                <div class="col-6">
+                <h6 class="float-left">{{pokemonDetail.abilities}}</h6>
+                </div>
+                <div class="col-6">
+                <h6 class="float-right">EVs:</h6>
+                </div>
+                <div class="col-6">
+                <h6 class="float-left">{{pokemonDetail.evs}}</h6>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="heading-bar col mb-4">
+            <span>Evolutions</span>
+        </div>
+        <div class="row align-items-center">
+            <div class=" col-md-4 ">
+                <img
+                    alt=''
+                    [src]="pokemonDetail.imageUrl"
+                    class="card-img-top rounded mx-auto mt-2"
+                />
+            </div>
+            <div class=" col-md-4 text-center">
+                <i class="fa fa-arrow-right" style="font-size:48px;color:green"></i>
+            </div>
+            <div class=" col-md-4 ">
+                <img
+                    alt=''
+                    [src]="pokemonDetail.evoulutionImg"
+                    class="card-img-top rounded mx-auto mt-2"
+                />
+            </div>
+            <div class="col text-center">
+                <p class="">{{pokemonDetail.name}} ivolves into {{pokemonDetail.evolutionName}} <strong> at level {{pokemonDetail.evolutionLevel}}</strong></p>
+            </div>
+        </div>
+
+    </div>
+</div>

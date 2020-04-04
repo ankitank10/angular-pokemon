@@ -1,0 +1,11 @@
+<div class="card card-style" [routerLink]="['/detail', pokemon.id]">
+    <img
+      class="card-img-top rounded mx-auto mt-2 card-custom"
+      [src]="pokemon.sprites.front_default"
+    />
+    <div class="card-body mx-auto">
+      <h6 class="card-title">
+        {{pokemon.name}}
+      </h6>
+    </div>
+</div>

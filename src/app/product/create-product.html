@@ -1,0 +1,72 @@
+<form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="container mt-4" autocomplete="off" novalidate>
+    <div formArrayName="product" *ngFor="let productObj of productForm.get('product').controls; let i = index">
+        <div [formGroupName]="i">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label [attr.for]="'Name'+i">Name</label>
+                    <input formControlName="name" type="text" class="form-control" [id]="'Name'+i" placeholder="Name">
+                    <span class="error-span" *ngIf="formErrors[i]?.name">
+                        {{formErrors[i].name}}
+                    </span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label [attr.for]="'Description'+i">Description</label>
+                    <input formControlName="description" type="text" class="form-control" [id]="'Description'+i"
+                        placeholder="Description">
+                    <span class="error-span" *ngIf="formErrors[i]?.description">
+                        {{formErrors[i].description}}
+                    </span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label [attr.for]="'Price+1'">Price</label>
+                    <input formControlName="price" type="text" class="form-control" [id]="'Price+1'" placeholder="Price">
+                    <span class="error-span" *ngIf="formErrors[i]?.price">
+                        {{formErrors[i].price}}
+                    </span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label [attr.for]="'Category'+i">Category</label>
+                    <select formControlName="category" [id]="'Category'+i" class="form-control">
+                        <option>Electronics</option>
+                        <option>Cloth</option>
+                        <option>Blanket</option>
+                    </select>
+                    <span class="error-span" *ngIf="formErrors[i]?.category">
+                        {{formErrors[i].category}}
+                    </span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label [attr.for]="'ImageUrl'+i">ImageUrl</label>
+                    <input formControlName="image" type="text" class="form-control" [id]="'ImageUrl'+i"
+                        placeholder="ImageUrl">
+                    <span class="error-span" *ngIf="formErrors[i]?.image">
+                        {{formErrors[i].image}}
+                    </span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label [attr.for]="'Phone'+i">Phone</label>
+                    <input formControlName="phone" type="text" class="form-control" [id]="'Phone'+i" placeholder="Phone">
+                    <span class="error-span" *ngIf="formErrors[i]?.phone">
+                        {{formErrors[i].phone}}
+                    </span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label [attr.for]="'Type'+i">Phonetype</label>
+                    <select formControlName="type" [id]="'Type'+i" class="form-control">
+                        <option>Mobile</option>
+                        <option>Landline</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</form>
+<div class="row float-right">
+    <button type="button" class="btn btn-primary" [disabled]="productForm.invalid || productForm.get('product').length === 5" (click)="addNewProduct()">Add New Product</button>
+    <button type="button" class="btn btn-primary" (click)="resetForm()">Reset</button>
+
+    <button type="button" class="btn btn-primary" (click)="saveProduct()">Save</button>
+</div>
