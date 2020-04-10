@@ -9,6 +9,7 @@ import {
 import { CreateProductComponent, ProductListComponent } from './product/index';
 import { RouteActivatorService } from './shared/services/activator-service';
 import { Error404Component } from './shared/components/404.component'
+
 export const appRoutes: Routes = [
   { path: 'home', component: PokemonListComponent, resolve: { pokemons: PokemonListResolver } },
   { path: 'detail/:term', component: PokemonDetailComponent, canActivate: [RouteActivatorService], resolve: { pokemonData: PokemonDetailResolver } },

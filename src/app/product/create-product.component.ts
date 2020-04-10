@@ -33,42 +33,6 @@ export class CreateProductComponent implements OnInit {
             type: [PRODUCT_FORM_DEFAULT.type]
         })
     }
-
-    logValidationErrors(group: FormGroup, type?:string, index?: number): void {
-        Object.keys(group.controls).forEach((key: string) => {
-            const abstractControl = group.get(key);
-            this.formErrors[key] = '';
-            if (abstractControl && !abstractControl.valid &&
-                (abstractControl.touched || abstractControl.dirty)) {
-                const messages = this.validationMessages[key];
-                for (const errorKey in abstractControl.errors) {
-                    if (errorKey) {
-                        this.formErrors[key] += messages[errorKey] + ' ';
-                    }
-                }
-            }
-            if (abstractControl instanceof FormGroup) {
-                this.logValidationErrors(abstractControl);
-            }
-            if (abstractControl instanceof FormArray) {
-                abstractControl.controls.forEach((control,i) => {
-                    if (control instanceof FormGroup) {
-                        if(this.formErrors[key]){
-                            this.formErrors[key].push({})
-                        }else{
-                            this.formErrors[key] = [{}];
-                        }
-                        this.logValidationErrors(control, 'arrayType', i);
-                    }
-                });
-                for (const control of abstractControl.controls) {
-                    if (control instanceof FormGroup) {
-                        this.logValidationErrors(control);
-                    }
-                }
-            }
-        });
-    }
     createValidationObj(formArray: FormArray): void{
         formArray.controls.forEach((group,i) => {
             if (group instanceof FormGroup) {

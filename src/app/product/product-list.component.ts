@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IProduct} from './product-model'
 @Component({
     template: `
     <div>
@@ -13,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
     `
 })
 export class ProductListComponent implements OnInit {
-    productList: any
+    productList: IProduct[]
     constructor() { }
 
     ngOnInit(): void {

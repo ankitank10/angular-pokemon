@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TYPE_COLORS } from '../../constants/mappings';
+import {IPkDetail} from './pokemon-detail.model'
 
 @Component({
     templateUrl: './pokemon-detail.html',
@@ -9,7 +10,7 @@ import { TYPE_COLORS } from '../../constants/mappings';
 export class PokemonDetailComponent implements OnInit {
     private pokemon
     private pokemonProfile
-    private pokemonDetail
+    private pokemonDetail:IPkDetail
     private pokemonEvolution
     private pokemonData
     private themeColors

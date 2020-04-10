@@ -23,8 +23,8 @@ export interface IPkDetail {
         genderRatioFemale: number,
         evs: string,
         hatchSteps: number,
-        themeColor: '#EF5350',
+        themeColor: string,
         evolutionLevel: number,
-        evoulutionImg: number,
+        evoulutionImg: string,
         evolutionName: string
 }
