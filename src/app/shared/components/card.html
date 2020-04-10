@@ -1,0 +1,8 @@
+<div class="card card-style" [routerLink]="isRoutable ? ['/detail', index] : null" [loaderDirective]="{isLoading:isLoading, id:index}">
+    <img class="card-img-top rounded mx-auto mt-2 card-custom" [src]="url" (load)="handleLoading()" />
+    <div class="card-body mx-auto">
+        <h6 class="card-title">
+            {{name}}
+        </h6>
+    </div>
+</div>

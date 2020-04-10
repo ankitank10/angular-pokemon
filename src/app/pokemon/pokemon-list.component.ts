@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {POKEMON_LIST_CONST} from '../constants/mappings'
+import {POKEMON_LIST_CONST, URLS} from '../constants/mappings'
 import {PokemonService} from './shared/pokemon.service'
 @Component({
     selector: 'pokemon-list',
@@ -10,7 +10,7 @@ import {PokemonService} from './shared/pokemon.service'
         <hr/>
         <div class="row">
             <div *ngFor="let pokemon of pokemonList" class="col-md-3 mb-5">
-                <pokemon-card [name]="pokemon.name" [url]="pokemon.url"></pokemon-card>
+                <card [index]="pokemon.url.split('/')[pokemon.url.split('/').length - 2]" [name]="pokemon.name" url="{{'http://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/'+ pokemon.url.split('/')[pokemon.url.split('/').length - 2] + '.png?raw=true'}}" class="card" isRoutable=true></card>
             </div>
         </div>
         <div class="btn-group mb-4 float-right" role="group">
@@ -18,20 +18,24 @@ import {PokemonService} from './shared/pokemon.service'
             <button type="button" [(disabled)]="disableNext" class="btn btn-primary mr-2" (click)="fetchNextPrevious('next')">Next</button>
         </div>
     </div>
-    `
+    `,
+    styles:[`
+        .card { position: relative; display: block;}
+    `]
 })
 export class PokemonListComponent implements OnInit {
-    pokemonList: any
-    disablePrevious: boolean = true
-    disableNext: boolean = false
-    currentOffset: number = 0
+    private pokemonList: any
+    private disablePrevious: boolean = true
+    private disableNext: boolean = false
+    private currentOffset: number = 0
+
     constructor(private activatedRoute: ActivatedRoute, private pokServiceObj: PokemonService) { }
 
     ngOnInit() {
         const pokData = this.activatedRoute.snapshot.data['pokemons'];
         this.handleResponseValues(pokData);
-        
     }
+    
     handleResponseValues(pokData){
         this.pokemonList = pokData.results;
         if((pokData.count-(POKEMON_LIST_CONST.noOfListItems*(this.currentOffset+1))) > 0){

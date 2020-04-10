@@ -1,11 +1,3 @@
-export const STAT_MAPPINGS = {
-    "special-defense" : "Sp Def",
-    "special-attack" : "Sp Atk",
-    "hp": "HP",
-    "attack": "Attack",
-    "defense": "Defense",
-    "speed": "Speed"
-}
 export const TYPE_COLORS = {
     bug: '#B1C12E',
     dark: '#4F3A2D',
@@ -38,5 +30,38 @@ export const TYPE_COLORS = {
 }
 
 export const POKEMON_LIST_CONST = {
-  noOfListItems: 20
+  noOfListItems: 30
+}
+
+export const URLS = {
+  pokemonImageUrl: ''
+}
+
+export const VALIDATION_MESSAGES = {
+  'name': {
+      'required': 'Name is required.',
+      'minlength': 'Name must be greater than 2 characters.',
+      'pattern': 'Name must contain only alphabets and numbers.'
+  },
+  'description': {
+      'required': 'Description is required.',
+      'minlength': 'Description must be greater than 2 characters.',
+      'pattern': 'Description must contain only alphabets and numbers.'
+  },
+  'price': {
+      'required': 'Price is required.',
+      'pattern': 'Price must contain 2 decimal places.'
+  },
+  'category': {
+      'required': 'Category is required.',
+  },
+  'image': {
+      'required': 'ImageUrl is required.',
+      'pattern': 'ImageUrl must be valid.'
+  },
+  'phone': {
+      'required': 'Phone is required.',
+      'pattern': 'Phone must contain digits only.',
+      'maxlength': 'Phone can not be greater than 10'
+  }
 }

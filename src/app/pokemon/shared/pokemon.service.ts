@@ -7,23 +7,6 @@ import { flatMap, map, mergeMap, take, catchError } from 'rxjs/operators'
 export class PokemonService {
   constructor(private http: HttpClient) {
   }
-  // getPokemonList() {
-  //   const PokemonObjCalls = [];
-  //   return this.http.get('https://pokeapi.co/api/v2/pokemon/?limit=10&offset=0').pipe(
-  //     map(result => {
-  //       const pokemonList = result['results'];
-  //       return pokemonList;
-  //     }),
-  //     mergeMap(pokemonList => {
-  //       pokemonList.forEach((item: any, index: number) => {
-  //         // const `pokeObj${index+1}` = this.http.get(`https://pokeapi.co/api/v2/pokemon?id=${index+1}`);
-  //         PokemonObjCalls.push(this.http.get(`https://pokeapi.co/api/v2/pokemon/${index + 1}`))
-  //       })
-  //       return forkJoin(PokemonObjCalls);
-  //     }),
-  //     take(1)
-  //   );
-  // }
   getPokemonList(pageOffset, pageLimit) {
     const PokemonObjCalls = [];
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/?limit=${pageLimit}&offset=${pageOffset}`)

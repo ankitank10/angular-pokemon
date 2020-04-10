@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms'
-import { PRODUCT_FORM_DEFAULT } from '../constants/mappings'
+import { PRODUCT_FORM_DEFAULT, VALIDATION_MESSAGES } from '../constants/mappings'
 
 @Component({
     templateUrl: './create-product.html',
@@ -8,34 +8,7 @@ import { PRODUCT_FORM_DEFAULT } from '../constants/mappings'
 })
 export class CreateProductComponent implements OnInit {
     productForm: FormGroup
-    validationMessages = {
-        'name': {
-            'required': 'Name is required.',
-            'minlength': 'Name must be greater than 2 characters.',
-            'pattern': 'Name must contain only alphabets and numbers.'
-        },
-        'description': {
-            'required': 'Description is required.',
-            'minlength': 'Description must be greater than 2 characters.',
-            'pattern': 'Description must contain only alphabets and numbers.'
-        },
-        'price': {
-            'required': 'Price is required.',
-            'pattern': 'Price must contain 2 decimal places.'
-        },
-        'category': {
-            'required': 'Category is required.',
-        },
-        'image': {
-            'required': 'ImageUrl is required.',
-            'pattern': 'ImageUrl must be valid.'
-        },
-        'phone': {
-            'required': 'Phone is required.',
-            'pattern': 'Phone must contain digits only.',
-            'maxlength': 'Phone can not be greater than 10'
-        }
-    }
+    validationMessages = VALIDATION_MESSAGES;
     formErrors = []
     constructor(private fb: FormBuilder) { }
 
@@ -96,7 +69,7 @@ export class CreateProductComponent implements OnInit {
             }
         });
     }
-    createValidationObj(formArray: FormArray){
+    createValidationObj(formArray: FormArray): void{
         formArray.controls.forEach((group,i) => {
             if (group instanceof FormGroup) {
                 this.formErrors[i] = {};
@@ -117,7 +90,6 @@ export class CreateProductComponent implements OnInit {
         });
     }
     saveProduct(): void {
-        console.log(this.productForm.value);
         localStorage.setItem('products', JSON.stringify(this.productForm.value.product));
     }
     resetForm(): void {

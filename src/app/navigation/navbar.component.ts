@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import {UserService} from '../common/services/user-service';
+import {UserService} from '../shared/services/user-service';
 import {PokemonService} from '../pokemon/shared/pokemon.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -18,8 +18,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   `]
 })
 export class NavBarComponent implements OnInit {
-  searchTerm: number
-  navSearchGroup: FormGroup
+  private navSearchGroup: FormGroup
+
   constructor(private auth: UserService, private pokSerObj: PokemonService, private router: Router) { }
 
   ngOnInit(): void {
@@ -28,12 +28,13 @@ export class NavBarComponent implements OnInit {
     })
    }
 
-  searchItems(searchTerm) {
+  searchItems(): void {
     if(this.navSearchGroup.valid){
       this.pokSerObj.checkPokemonId(this.navSearchGroup.value.search.toLowerCase()).subscribe((data) => {
         this.router.navigate(['/detail', this.navSearchGroup.value.search.toLowerCase()])
       },
-      (error) => {console.log(error)}
+      (error) => {
+        console.log(error)}
       )
     }
   }

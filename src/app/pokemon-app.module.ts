@@ -8,30 +8,33 @@ import {appRoutes} from './pokemon-app.route'
 import {PokemonAppComponent} from './pokemon-app.component'
 import {NavBarComponent} from './navigation/navbar.component'
 import {PokemonListComponent,
-        PokemonCardComponent,
         PokemonDetailComponent,
         PokemonService,
         PokemonListResolver,
         PokemonDetailResolver
 } from './pokemon/index'
 import {CreateProductComponent, ProductListComponent} from './product/index'
-import {RouteActivatorService} from '../app/common/services/activator-service';
-import {FirstUpperPipe} from '../app/common/utilities/FirstUpper-pipe'
-import {UserService} from '../app/common/services/user-service';
-import {Error404Component} from '../app/common/errors/404.component'
+import {RouteActivatorService} from './shared/services/activator-service';
+import {FirstUpperPipe} from './shared/utilities/firstUpper-pipe'
+import {LoaderDirective} from './shared/utilities/loader-directive'
+import {UserService} from './shared/services/user-service';
+import {Error404Component} from './shared/components/404.component'
+import {CardComponent} from './shared/components/card.component';
+import {httpInterceptorProviders} from './shared/interceptors/index'
 
 
 @NgModule({
   declarations: [
     PokemonAppComponent,
     PokemonListComponent,
-    PokemonCardComponent,
+    CardComponent,
     PokemonDetailComponent,
     NavBarComponent,
     CreateProductComponent,
     ProductListComponent,
     Error404Component,
-    FirstUpperPipe
+    FirstUpperPipe,
+    LoaderDirective
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import {Error404Component} from '../app/common/errors/404.component'
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [PokemonService, PokemonListResolver, PokemonDetailResolver, RouteActivatorService, UserService],
+  providers: [PokemonService, PokemonListResolver, PokemonDetailResolver, RouteActivatorService, UserService, httpInterceptorProviders],
   bootstrap: [PokemonAppComponent]
 })
 export class PokemonAppModule { }

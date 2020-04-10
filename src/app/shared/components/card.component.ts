@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: 'pokemon-card',
-    templateUrl: './pokemon-card.html',
+    selector: 'card',
+    templateUrl: './card.html',
     styles:[`
         .card-custom {width: 5em; height: 5em; }
         .card-style {
@@ -16,16 +16,21 @@ import { Component, OnInit, Input } from '@angular/core';
         }
     `]
 })
-export class PokemonCardComponent implements OnInit {
-    pokemonIndex: number
-    imageUrl: string
+export class CardComponent implements OnInit {
+    private isLoading: boolean = false
     @Input() name:string
     @Input() url:string
-    constructor() { }
+    @Input() index:number 
+    @Input() isRoutable:boolean
 
     ngOnInit(): void {
-        this.pokemonIndex = +(this.url.split('/')[this.url.split('/').length - 2]);
-        //const imageUrl = `./sprites/pokemon/${pokemonIndex}.png`;
-        this.imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${this.pokemonIndex}.png?raw=true`;
-     }
+        this.isLoading = true;
+    }
+    handleLoading(isError){
+        this.isLoading = false;
+    }
+    ngOnDestroy(): void {
+        this.isLoading = false;
+        
+    }
 }
